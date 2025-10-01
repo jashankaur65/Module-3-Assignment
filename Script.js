@@ -36,7 +36,7 @@ const storyData = {
             { text: "Ignore it", next: "stormEnding" }
         ]
     },
-    goldEnding: { text: "You open the chest and find gold! You win!" , choices: [] },
+    goldEnding: { text: "You open the chest and find gold! You win!", choices: [] },
     starveEnding: { text: "You ignore the chest, get lost, and starve. Game over.", choices: [] },
     monsterEnding: { text: "You fight bravely, but the monster defeats you. Game over.", choices: [] },
     escapeEnding: { text: "You run away and escape safely. You win!", choices: [] },
@@ -56,13 +56,25 @@ function renderStory() {
     storyData[currentStory].choices.forEach(choice => {
         const button = document.createElement("button");
         button.innerText = choice.text;
-        button.setAttribute("tabindex", "0"); // makes button focusable for keyboard navigation
+        button.setAttribute("tabindex", "0"); // focusable for keyboard navigation
         button.onclick = () => {
             currentStory = choice.next;
             renderStory();
         };
         choicesElement.appendChild(button);
     });
+
+    // If no choices, add a restart button
+    if (storyData[currentStory].choices.length === 0) {
+        const restartButton = document.createElement("button");
+        restartButton.innerText = "Restart Game";
+        restartButton.setAttribute("tabindex", "0");
+        restartButton.onclick = () => {
+            currentStory = "start";
+            renderStory();
+        };
+        choicesElement.appendChild(restartButton);
+    }
 }
 
 // Start the game
