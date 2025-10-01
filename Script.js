@@ -56,6 +56,7 @@ function renderStory() {
     storyData[currentStory].choices.forEach(choice => {
         const button = document.createElement("button");
         button.innerText = choice.text;
+        button.setAttribute("tabindex", "0"); // makes button focusable for keyboard navigation
         button.onclick = () => {
             currentStory = choice.next;
             renderStory();
@@ -66,3 +67,4 @@ function renderStory() {
 
 // Start the game
 renderStory();
+
