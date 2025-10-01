@@ -42,6 +42,12 @@ body {
     background-color: #d3d3d3;
 }
 
+/* Focus state for keyboard navigation */
+#choices button:focus {
+    outline: 3px solid #007acc; /* visible blue outline */
+    background-color: #cce7ff;  /* slight highlight */
+}
+
 /* Heading */
 h1 {
     text-align: center;
